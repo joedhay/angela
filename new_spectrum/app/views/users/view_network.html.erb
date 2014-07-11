@@ -1,0 +1,37 @@
+<!-- list goes here -->
+<%#= form_tag delete_streams_streams_path, method: :delete, id: 'stream-list-form' do  %>
+
+
+<table class="table table-striped" id="stream-list-table">
+  <thead>
+        <tr>
+          <th class="cap"><%= check_box_tag 'master_checkbox' %></th>
+          <th><%= t('users.name') %></th>
+          <th><%= t('users.com_name') %></th>
+          <th><%= t('general.role') %></th>
+          <th><%= t('general.username') %></th>
+          <th><%= t('general.action') %></th>
+        </tr>
+  </thead>
+            <% if @users.length > 0 %>
+                <tbody>
+                    <% @users.each do |user| %>
+                        <tr>
+                          <td><%= check_box_tag 'users[]', user.id,false,:class=>"users" %></td>
+                          <td><%= link_to(user.name,:action=> 'edit',:id=>user.id) %></td>
+                          <td><%= user.company_name %></td>
+                          <td><%= user.role %></td>
+                          <td><%= user.username %></td>
+                          <td>
+                            <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-edit','data-placement' => 'bottom', 'rel'=>'tooltip'), { :action=> 'edit', :id=>user.id}  %>
+                            <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-trash','data-placement' => 'bottom', 'rel'=>'tooltip'),user,method: :delete,data:{confirm: t('users.user_confirm'),:remote=>true}  %>
+                          </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            <% end %>
+</table>
+
+
+
+

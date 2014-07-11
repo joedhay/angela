@@ -1,0 +1,121 @@
+<%= form_for(@user, url: create_user_users_path) do |v| %>
+    <div class="alert alert-error" id="alert-container" style="background-color: #adadad;">
+      <% if @user.errors.any? %>
+          <div class="alert autoclose alert-error">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <div id="error_explanation">
+              <h4><%= t('phrases.saving_error_sfx', error: pluralize(@user.errors.count, t('general.error'))) %>:</h4>
+              <p>&nbsp;</p>
+              <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+      <% end %>
+    </div>
+
+    <table class="table">
+      <tbody>
+          <tr>
+            <td class="span4">
+              <div class="control-group">
+                <%= v.label :name %>
+                <div class="controls">
+                  <%= v.text_field(:name,:class=>"input-large", :placeholder=> t('users.name'))  %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= v.label :address %>
+                <div class="controls">
+                  <%= v.text_area(:address,rows: 5, cols: 17, :placeholder=> t('users.address'))  %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= v.label :company_name %>
+                <div class="controls">
+                  <%= v.text_field(:company_name,:class=>"input-large", :placeholder=> t('users.com_name'))  %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= v.label :tel_number %>
+                <div class="controls">
+                  <%= v.text_field(:tel_number,:class=> "bfh-phone", :placeholder=> t('users.tel_num'))  %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= v.label :cp_number %>
+                <div class="controls">
+                  <%= v.text_field(:cp_number,:class=> "bfh-phone", :placeholder=> t('users.cp_num'))  %>
+                </div>
+              </div>
+
+
+            </td>
+            <td class="span4">
+              <div class="control-group">
+                <%= v.label :avatar %>
+                <!--<span id="add-images-button" class="btn btn-primary fileinput-button">
+                      <i class="icon-plus"></i>-->
+                <!--<span>Attach Avatar</span>--><%= v.file_field :avatar%>
+                <!-- &nbsp;
+                     <span class='label label-info' id="upload-file-info"></span>
+               </span>-->
+              </div>
+
+              <div class="control-group">
+                <%= v.label :creadit_card_number %>
+                <div class="controls">
+                  <%= v.text_field(:creadit_card_number,:class=> "input-large", :placeholder=> t('users.card_num'))  %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= v.label :username %>
+                <div class="controls">
+                  <%= text_field_tag 'username', nil, class: 'input-large',placeholder: t('users.username') %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= v.label :password %>
+                <div class="controls">
+                  <%= password_field_tag('password', '' ,class: 'input-large', placeholder: t('users.password'))%>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= v.label :role %>
+                <div class="controls">
+                  <%= hidden_field_tag 'parent_id', @parent_id %>
+                  <%= v.select :role, options_for_select([ t('general.admin'), t('general.viewer') ],@user.gender) %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= v.label :gender %>
+                <div class="controls">
+                  <%= v.select :gender, options_for_select([ t('general.male'), t('general.female') ],@user.gender) %>
+                </div>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+
+    </table>
+              <div class="control-group">
+                <div class="controls">
+                  <%= v.submit t('general.submit'),class: "btn btn-info"  %>
+                      <button class="btn btn-danger" type="button" id="cancel" value="<%= params[:controller]; %>">Back</button>
+                </div>
+              </div>
+<% end %>
+
+
+
+

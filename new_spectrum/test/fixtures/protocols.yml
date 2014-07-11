@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id_user: 1
+  name: MyString
+  ip_hostname: MyString
+  subnet: MyString
+  port: MyString
+  timeout: 1
+  poll: 1
+
+two:
+  id_user: 1
+  name: MyString
+  ip_hostname: MyString
+  subnet: MyString
+  port: MyString
+  timeout: 1
+  poll: 1

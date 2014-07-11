@@ -1,0 +1,396 @@
+
+<!-- Modal Starts -->
+<div class="modal fade bs-example-modal-lg" id="seevisual" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">See Visuals</h4>
+      </div>
+      <div class="modal-body">
+        <div id='visual_chart' width="100%"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Ends -->
+
+<div id="wrapper">
+  <!--Navigations-->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="logo"><span></span></a>
+      <a class="navbar-brand" href="index.html"><img src="/assets/spectrum.png" width="22%"></a>
+    </div>
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav side-nav ">
+        <br /><br />
+        <li ><a href="/dashboard" class="disabled"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="/monitor" class="disabled"><i class="fa fa-desktop"></i> Monitor</a></li>
+        <li><a href="/network" class="disabled"><i class="fa fa-cloud"></i> Network</a></li>
+        <li><a href="/reports" class="disabled"><i class="fa fa-bar-chart-o"></i> Reports</a></li>
+        <li><a href="/settings" class="disabled"><i class="fa fa-wrench"></i> Settings</a></li>
+        <li><a href="/support" class="disabled"><i class="fa fa-envelope"></i> Support</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right navbar-user">
+        <li class="dropdown messages-dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">7</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-header">7 New Messages</li>
+            <li class="message-preview">
+              <a href="#">
+                <span class="avatar"><img src="http://placehold.it/50x50"></span>
+                <span class="name">Admin:</span>
+                <span class="message">Hey there, I wanted to ask you something...</span>
+                <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li class="message-preview">
+              <a href="#">
+                <span class="avatar"><img src="http://placehold.it/50x50"></span>
+                <span class="name">Admin:</span>
+                <span class="message">Hey there, I wanted to ask you something...</span>
+                <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li class="message-preview">
+              <a href="#">
+                <span class="avatar"><img src="http://placehold.it/50x50"></span>
+                <span class="name">Admin:</span>
+                <span class="message">Hey there, I wanted to ask you something...</span>
+                <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li><a href="#">View Inbox <span class="badge">7</span></a></li>
+          </ul>
+        </li>
+        <li class="dropdown alerts-dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Alerts <span class="badge">4</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"></a></li>
+            <li><a href="#">Message to 192.168.1.10 <span class="label label-info">Sent!</span></a></li>
+            <li><a href="#">Installation Complete: 192.168.1.10  <span class="label label-success">Fixed!</span></a></li>
+            <li><a href="#">Error in: 192.168.1.12 <span class="label label-danger">Application Error!</span></a></li>
+            <li><a href="#">Error in: 192.168.1.10  <span class="label label-danger">Application Error!</span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">View All</a></li>
+          </ul>
+        </li>
+        <li class="dropdown user-dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Admin <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+            <li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
+            <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--End of Navigation-->
+  <div id="page-wrapper">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1>New Settings <small>What To Monitor?</small></h1>
+
+      </div> <!--col-->
+    </div><!--row-->
+    <br />
+    <div id="row" >
+      <div class="col-xs-12" >
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-pencil"></i> Please Choose What To Monitor:</h3>
+          </div>
+          <div class="panel-body" >
+            <%= form_tag('/monitor/update', remote: true) do -%>
+            <ul class="nav nav-tabs" role="tablist" id="myTab">
+              <li class="active"><a href="#network" role="tab" data-toggle="tab">By Network</a></li>
+              <li><a href="#application" role="tab" data-toggle="tab">By App</a></li>
+              <li><a href="#os" role="tab" data-toggle="tab">By OS</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <!--Network-->
+              <div class="tab-pane fade in active" id="network" >
+                <br /><br />
+                <div class="col-lg-12" style="text-align: right;">
+                  <div  id="configuration"><button type="button" class="btn btn-primary" onclick="config();"> Configuration</button></div>
+                  <br/>
+                </div>
+                <div class="col-lg-12"></div>
+
+                <% @networks.each do |n| %>
+
+                    <% if @x==1 %>
+                        <div class="col-lg-4">
+                          <div class="col-lg-12">
+                            <table class="table">
+                    <% end %>
+
+                    <tr>
+                      <td>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#network<%= n.id %>" onclick="expand('n<%= n.id %>')"><label id="exminn<%= n.id %>"><b>+</b>&nbsp;</label><input type="hidden" id="typen<%= n.id %>" value="+" /><label class="control-label" style="color: black"><%= n.ip_address %></label></a><br />
+                        <div id="network<%= n.id %>" class="panel-collapse collapse">
+                          <table>
+                            <tr>
+                              <td>
+                                <!--Hardwares-->
+                                <form name="monitorSpec" id="monitorSpec" >
+                                  <% @hardwares.each do |h| %>
+                                      <% if h.ip_address.eql?(n.ip_address) %>
+                                          &nbsp;&nbsp; <a data-toggle="collapse" data-parent="#network<%= n.id %>" href="#hardwares<%= h.id %>" onclick="expand('h<%= n.id %>')"><label id="exminh<%= n.id %>"><b>+</b>&nbsp;</label><input type="hidden" id="typeh<%= n.id %>" value="+" /><label class="control-label" style="color: black">Hardwares</label></a>
+                                          <div id="hardwares<%= h.id %>" class="panel-collapse collapse">
+                                            <% break %>
+                                      <% end %>
+                                  <% end %>
+
+                                  <% @hardwares.each do |h| %>
+                                      <% if h.ip_address.eql?(n.ip_address) %>
+
+                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag 'h_ids[]', h.id, true, disabled:true %>&nbsp;<i><%= h.name %></i><br/>
+
+                                      <% end %>
+                                  <% end %>
+                                  <% @hardwares.each do |h| %>
+                                      <% if h.ip_address.eql?(n.ip_address) %>
+                                          </div>
+                                          . <% break %>
+                                      <% end %>
+                                  <% end %>
+                                  <!--Hardwares-->
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <!--Services-->
+
+
+                                <% @services.each do |s| %>
+                                    <% if s.ip_hostname.eql?(n.ip_address) %>
+                                        &nbsp;&nbsp; <a data-toggle="collapse" data-parent="#network<%= n.id %>" href="#services<%= s.id %>" onclick="expand('s<%= n.id %>')"><label id="exmins<%= n.id %>"><b>+</b>&nbsp;</label><input type="hidden" id="types<%= n.id %>" value="+" /><label class="control-label" style="color: black">Protocols</label></a>
+                                        <div id="services<%= s.id %>" class="panel-collapse collapse">
+                                          <% break %>
+                                    <% end %>
+                                <% end %>
+
+                                <% @services.each do |s| %>
+                                    <% if s.ip_hostname.eql?(n.ip_address) %>
+
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag 's_ids[]', s.id, true, disabled:true %>&nbsp;<i><%= s.d_name %></i><br/>
+
+                                    <% end %>
+                                <% end %>
+                                <% @services.each do |s| %>
+                                    <% if s.ip_hostname.eql?(n.ip_address) %>
+                                        </div>
+                                        . <% break %>
+                                    <% end %>
+                                <% end %>
+                                <!--Services-->
+                              </td>
+
+                            </tr>
+                            <tr>
+                              <td>
+
+                                <!--Applications-->
+
+                                <% @applications.each do |a| %>
+                                    <% if a.ip_hostname.eql?(n.ip_address) %>
+                                        &nbsp;&nbsp; <a data-toggle="collapse" data-parent="#network<%= n.id %>" href="#applications<%= a.id %>" onclick="expand('a<%= n.id %>')"><label id="exmina<%= n.id %>"><b>+</b>&nbsp;</label><input type="hidden" id="typea<%= n.id %>" value="+" /><label class="control-label" style="color: black">Applications</label></a>
+                                        <div id="applications<%= a.id %>" class="panel-collapse collapse">
+                                          <% break %>
+                                    <% end %>
+                                <% end %>
+
+                                <% @applications.each do |a| %>
+                                    <% if a.ip_hostname.eql?(n.ip_address) %>
+
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag 'a_ids[]', a.id, true, disabled:true %>&nbsp;<i><%= a.d_name %>&nbsp;</i><br/>
+
+                                    <% end %>
+                                <% end %>
+                                <% @applications.each do |a| %>
+                                    <% if a.ip_hostname.eql?(n.ip_address) %>
+                                        </div>
+                                    </div>
+                                    . <% break %>
+                                <% end %>
+                            <% end %>
+                            <!--Applications-->
+                            </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <!--Virtualizations-->
+
+                        <% @vmachines.each do |v| %>
+                            <% if v.ip_hostname.eql?(n.ip_address) %>
+                                &nbsp;&nbsp; <a data-toggle="collapse" data-parent="#network<%= n.id %>" href="#vmachines<%= v.id %>" onclick="expand('vm<%= n.id %>')"><label id="exminvm<%= n.id %>"><b>+</b>&nbsp;</label><input type="hidden" id="typevm<%= n.id %>" value="+" /><label class="control-label" style="color: black">Virtual Machines</label></a>
+                                <div id="vmachines<%= v.id %>" class="panel-collapse collapse">
+                                  <% break %>
+                            <% end %>
+                        <% end %>
+
+                        <% @vmachines.each do |v| %>
+                            <% if v.ip_hostname.eql?(n.ip_address) %>
+
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><%= check_box_tag 'v_ids[]', v.id, true, disabled:true %>&nbsp;<%= v.d_name %></i><br/>
+
+                            <% end %>
+                        <% end %>
+                        <% @vmachines.each do |v| %>
+                            <% if v.ip_hostname.eql?(n.ip_address) %>
+                                </div>
+                            </div>
+                            . <% break %>
+                        <% end %>
+                    <% end %>
+                    <!--Applications-->
+                    </td>
+                    </tr>
+                    </form>
+                    </table>
+                    </div>
+
+                    </div>
+                    </td>
+                    <td><a href="#" onclick="openModal();drawChart('<%= n.ip_address%>');" class="fa-stack fa-lg">
+                      <i class="fa fa-square-o fa-stack-2x"></i>
+                      <i class="fa fa-sitemap fa-stack-1x"></i>
+                    </a>
+                    </td>
+                    </tr>
+
+
+                    <% if @x==10 || @y==@networks.length %>
+
+                        </table>
+                        </div>
+                        </div>
+
+                        <%@x=0%>
+
+                    <% end %>
+
+                    <%@x+=1%>
+                    <%@y+=1%>
+
+                <% end %>
+
+
+                </div>
+
+              <!--Application-->
+              <div class="tab-pane fade" id="application">
+                <br /><br />
+                <div class="col-lg-12"></div>
+
+                <% @apps.each do |app| %>
+
+
+                    <div class="col-xs-6 col-sm-3">
+
+
+                      <a data-toggle="collapse" data-parent="#accordion" href="#<%= app.d_name %>" onclick="expand('<%= app.d_name %>')"><label id="exmin<%= app.d_name %>"><b>+</b>&nbsp;</label><input type="hidden" id="type<%= app.d_name %>" value="+" /><label class="control-label" style="color: black"><%= app.d_name %></label></a><br />
+                      <div id="<%= app.d_name %>" class="panel-collapse collapse">
+                        <table>
+                          <tr>
+                            <td>
+                              <% @applications.each do |a| %>
+                                  <% if a.d_name.eql?(app.d_name) %>
+
+                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><%= a.ip_hostname %></i><br />
+
+                                  <% end %>
+                              <% end %>
+
+                            </td>
+                          </tr>
+
+                        </table>
+                      </div>
+                    </div>
+
+
+
+
+                <% end %>
+
+
+              </div>
+
+              <!--Operating System-->
+              <div class="tab-pane fade" id="os">
+                <br /><br />
+                <div class="col-lg-12"></div>
+
+                <% @oses.each do |os| %>
+
+
+                    <div class="col-xs-6 col-sm-3">
+
+
+                      <a data-toggle="collapse" data-parent="#accordion" href="#<%= os.os %>" onclick="expand('<%= os.os %>')"><label id="exmin<%= os.os %>"><b>+</b>&nbsp;</label><input type="hidden" id="type<%= os.os %>" value="+" /><label class="control-label" style="color: black"><%= os.os %></label></a><br />
+                      <div id="<%= os.os %>" class="panel-collapse collapse">
+                        <table>
+                          <tr>
+                            <td>
+                              <% @networks.each do |n| %>
+                                  <% if n.os.eql?(os.os) %>
+
+                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><%= n.ip_address %></i><br />
+
+                                  <% end %>
+                              <% end %>
+
+                            </td>
+                          </tr>
+
+                        </table>
+                      </div>
+                    </div>
+
+
+
+
+                <% end %>
+
+
+              </div>
+            </div>
+
+
+            <div class="col-lg-12" style="text-align: right;">
+              <br/><br/>
+
+              <%= submit_tag 'Submit', :class => "btn btn-success" %>
+
+            </div>
+            <!--put text here!-->
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AgileSpectrum</title>
+  <%= include_gon if defined? gon && gon.present? %>
+  <%#= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%#= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render partial: 'layouts/header' %>
+ <div id="container body-container" class="body-container">
+   <%= yield %>
+ </div>
+
+<%= render partial: 'layouts/footer' %>
+
+
+</body>
+</html>
+

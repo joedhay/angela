@@ -1,0 +1,60 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+      general:
+        login:                "Login"
+        username:             "Username"
+        password:             "Password"
+        login:                "Login"
+        submit:               "Submit"
+        error:                "error"
+        male:                 "Male"
+        female:               "Female"
+        admin:                "Admin"
+        viewer:               "Viewer"
+        role:                 "Role"
+        action:               "Action"
+
+      phrases:
+        saving_error_sfx:   "%{error} prohibited this task from being saved"
+        none_selected:      "You did not selected any record."
+        action_prohibited:  "You are not allowed to perform this action."
+
+      users:
+        create:               "Create account"
+        name:                 "Name"
+        address:              "Address"
+        com_name:             "Company Name"
+        tel_num:              "02-4512222"
+        cp_num:               "+6392213654"
+        card_num:             "0000-1234-1234"
+        username:             "Username"
+        password:             "Password"
+        gender:               "Male"
+        role:                 "Admin"
+        errors:               "Errors on Form"
+        created:              "New User Added"
+        usrandpass_error:     "Username and password cannot be empty"
+        invalidusrpass_error: "Invalid username and/or password"
+        image_format:         "is not in acceptable format. (Accepts .jpeg, .png, .gif, .tif only.)"
+        user_confirm:         "Are you sure to delete this user?"
+        deleted:              "User data has been deleted."
